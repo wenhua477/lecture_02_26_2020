@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Greeting from './Greeting'
+import AgeCounter from './AgeCounter'
+
+export default class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            age: 4,
+        }
+    }
+
+    greeting(name) {
+        return "Welcome to my website " + name;
+    }
+
+    incrementAge() {
+        this.setState({
+            age: this.state.age + 1
+        })
+    }
+
+    render() {
+
+        return (
+            <div>
+                <Greeting name="Zitao" />
+                <AgeCounter ageIncrFunc={() => this.incrementAge()} age={this.state.age} />
+            </div>
+        )
+
+    }
+
+
 }
-
-export default App;
